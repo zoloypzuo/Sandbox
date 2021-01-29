@@ -24,9 +24,9 @@
 --require "SandboxDemos"
 dofile("SandboxDemos.lua");
 
-DxLibx64 = "\"C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64\""
-DxLibx86 = "\"C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x86\""
-BuildOptionIncludeDx = "/I \"C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/Include/\""
+DxLibx64 = "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64"
+DxLibx86 = "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x86/"
+DxInclude = "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/"
 
 solution( "Learning Game AI Programming" )
 	location( "../build/" )
@@ -35,7 +35,10 @@ solution( "Learning Game AI Programming" )
 
 -- configuration shared between all projects
 	language( "C++" )
-	includedirs( { "../src/%{prj.name}/include/" } )
+	includedirs( {
+		"../src/%{prj.name}/include/",
+		DxInclude,
+	} )
     warnings( "Extra" )
 	flags( {
 		-- "FatalWarnings",
@@ -159,7 +162,7 @@ local function CreateSandboxProject( projectName )
 		} )
 		configuration( { "windows" } )
 -- add the directx include directory
-			buildoptions( { BuildOptionIncludeDx } )
+			buildoptions( {  } )
 -- link against directx libraries
 			links( {
 				"d3d9",
@@ -234,7 +237,7 @@ end
 			"../src/ogre3d_direct3d9/include/"
 		} )
 		configuration( { "windows" } )
-			buildoptions( { BuildOptionIncludeDx } )
+			buildoptions( {  } )
 		configuration( { "*" } )
 		files( {
 			"../src/demo_framework/include/**.h",
@@ -425,7 +428,6 @@ end
 			"../src/libvorbis/include/"
 		} )
 		buildoptions( {
-			BuildOptionIncludeDx,
 			"/wd\"4100\"", "/wd\"4189\"", "/wd\"4244\"", "/wd\"4389\"",
             "/wd\"4702\"", "/wd\"4267\""
 		} )
@@ -601,7 +603,7 @@ end
 		} )
 		linkoptions ( { "/ignore:\"4221\"" } )
 		configuration( "windows" )
-		buildoptions( { BuildOptionIncludeDx } )
+		buildoptions( {  } )
 		configuration( "*" )
 		files( {
 			"../src/ogre3d_direct3d9/include/**.h",
@@ -640,7 +642,7 @@ end
 		} )
 		linkoptions ( { "/ignore:\"4221\"" } )
 		configuration( "windows" )
-			buildoptions( { BuildOptionIncludeDx} )
+			buildoptions( { } )
 		configuration( "*" )
 		files( {
 			"../src/ogre3d_particlefx/include/**.h",
@@ -677,7 +679,7 @@ end
 			"/wd\"4512\"", "/wd\"4100\"", "/wd\"4189\""
 		} )
 		configuration( "windows" )
-			buildoptions( { BuildOptionIncludeDx} )
+			buildoptions( { } )
 		configuration( "*" )
 		files( { "../src/ois/include/**.h", "../src/ois/src/**.cpp" } )
 
