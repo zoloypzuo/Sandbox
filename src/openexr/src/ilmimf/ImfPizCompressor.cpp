@@ -310,7 +310,7 @@ PizCompressor::compress (const char *inPtr,
     //
 
     //
-    // Special case ­- empty input buffer
+    // Special case ? empty input buffer
     //
 
     if (inSize == 0)

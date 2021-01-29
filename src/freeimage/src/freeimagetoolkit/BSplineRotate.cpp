@@ -4,7 +4,7 @@
 // Design and implementation by
 // - Philippe Thévenaz (philippe.thevenaz@epfl.ch)
 // Adaptation for FreeImage by
-// - Hervé Drolon (drolon@infonie.fr)
+// - Herv?Drolon (drolon@infonie.fr)
 //
 // This file is part of FreeImage 3
 //

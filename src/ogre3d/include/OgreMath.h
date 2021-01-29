@@ -366,7 +366,7 @@ namespace Ogre
         static inline double saturate(double t) { return (t < 0) ? 0 : ((t > 1) ? 1 : t); }
         
         //Simulate the shader function lerp which performers linear interpolation
-        //given 3 parameters v0, v1 and t the function returns the value of (1 – t)* v0 + t * v1. 
+        //given 3 parameters v0, v1 and t the function returns the value of (1 ?t)* v0 + t * v1. 
         //where v0 and v1 are matching vector or scalar types and t can be either a scalar or a vector of the same type as a and b.
         template<typename V, typename T> static V lerp(const V& v0, const V& v1, const T& t) { 
             return v0 * (1 - t) + v1 * t; }

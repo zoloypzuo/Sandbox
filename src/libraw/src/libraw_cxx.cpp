@@ -1785,7 +1785,7 @@ void LibRaw::kodak_thumb_loader()
 
 
 
-// Достает thumbnail из файла, ставит thumb_format в соответствии с форматом
+// Достае?thumbnail из файл? ставит thumb_format ?соответствии ?форматом
 int LibRaw::unpack_thumb(void)
 {
     CHECK_ORDER_LOW(LIBRAW_PROGRESS_IDENTIFY);
