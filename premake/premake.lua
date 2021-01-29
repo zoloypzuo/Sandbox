@@ -34,7 +34,7 @@ solution( "Learning Game AI Programming" )
 	includedirs( { "../src/%{prj.name}/include/" } )
     warnings( "Extra" )
 	flags( {
-		"FatalWarnings",
+		-- "FatalWarnings",
 		"MultiProcessorCompile",
 		"NoEditAndContinue",
 		"NoImplicitLink",
@@ -60,7 +60,7 @@ solution( "Learning Game AI Programming" )
 -- platform(windows/linux) specific configurations
 	configuration( "windows" )
 -- fatal linker warnings
-		linkoptions ( { "/WX" } )
+		-- linkoptions ( { "/WX" } )
 	configuration( "linux" )
 	configuration( "*" )
 
