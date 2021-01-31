@@ -2527,8 +2527,16 @@ int Lua_Script_SandboxCreateSkyBox(lua_State* luaVM)
                     rotation->x, rotation->y, rotation->z);
 
             Sandbox* const sandbox = static_cast<Sandbox*>(type->rawPointer);
-            SandboxUtilities::CreateSkyBox(
-                sandbox, materialName, orientation);
+			try{
+				SandboxUtilities::CreateSkyBox(
+					sandbox, materialName, orientation);
+			}
+			catch (std::exception &e){
+				luaL_error(luaVM, "C++ exception thrown: %s", e.what());
+			}
+			catch (...){
+				luaL_error(luaVM, "C++ exception");
+			}
         }
     }
 
