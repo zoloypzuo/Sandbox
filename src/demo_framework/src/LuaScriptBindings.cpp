@@ -4015,3 +4015,10 @@ int Lua_Script_UISetWorldRotation(lua_State* luaVM)
 
     return 0;
 }
+
+int Lua_Script_Log(lua_State* luaVM)
+{
+	const Ogre::String msg = "[lua] " + LuaScriptUtilities::GetString(luaVM, -1);
+	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+	return 0;
+}

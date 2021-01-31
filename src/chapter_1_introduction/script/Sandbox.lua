@@ -73,6 +73,7 @@ function Sandbox_HandleEvent(sandbox, event)
 end
 
 function Sandbox_Initialize(sandbox)
+    Core.Log("zolo lua string")
     GUI_CreateUI(sandbox);
     CreateSandboxText(sandbox);
     

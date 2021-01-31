@@ -79,6 +79,7 @@ const luaL_Reg LuaCoreFunctions[] =
     { "SetPosition",                Lua_Script_CoreSetPosition },
     { "SetRotation",                Lua_Script_CoreSetRotation },
     { "SetVisisble",                Lua_Script_CoreSetVisible },
+	{ "Log",                        Lua_Script_Log },
     { NULL, NULL }
 };
 
