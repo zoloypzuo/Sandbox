@@ -343,6 +343,7 @@ build/**
 lib/**
 media/**
 tools/**
+cmake-build-debug/**
 
 
 
