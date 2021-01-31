@@ -914,7 +914,12 @@ void LuaScriptUtilities::LoadScript(
     // using.
     // The loadbuffer's name must match the lua filename.
     luaL_loadbuffer(luaVM, luaScriptContents, bufferSize, fileName);
-    lua_pcall(luaVM, 0, LUA_MULTRET, 0);
+    if(lua_pcall(luaVM, 0, LUA_MULTRET, 0) != 0)
+    {
+        const char *msg = lua_tostring(luaVM, -1);
+        Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+        MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
+    }
 }
 
 void LuaScriptUtilities::NameVM(

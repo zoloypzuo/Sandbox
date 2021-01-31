@@ -160,7 +160,9 @@ void SandboxUtilities::CallLuaCollisionHandler(
 
         if (lua_pcall(luaVM, 2, 0, 0) != 0)
         {
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -187,7 +189,9 @@ void SandboxUtilities::CallLuaEventHandler(
 
         if (lua_pcall(luaVM, 4, 0, 0) != 0)
         {
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -208,7 +212,9 @@ void SandboxUtilities::CallLuaSandboxCleanup(Sandbox* const sandbox)
 
         if (lua_pcall(luaVM, 1, 0, 0) != 0)
         {
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -231,7 +237,9 @@ void SandboxUtilities::CallLuaSandboxHandleKeyboardEvent(
 
         if (lua_pcall(luaVM, 2, 0, 0) != 0)
         {
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -259,7 +267,9 @@ void SandboxUtilities::CallLuaSandboxHandleMouseEvent(
 
         if (lua_pcall(luaVM, 2, 0, 0) != 0)
         {
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -282,7 +292,9 @@ void SandboxUtilities::CallLuaSandboxHandleMouseMoveEvent(
 
         if (lua_pcall(luaVM, 2, 0, 0) != 0)
         {
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -303,8 +315,9 @@ void SandboxUtilities::CallLuaSandboxInitialize(Sandbox* const sandbox)
 
         if (lua_pcall(luaVM, 1, 0, 0) != 0)
         {
-            // Lua error.
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -327,7 +340,9 @@ void SandboxUtilities::CallLuaSandboxUpdate(
 
         if (lua_pcall(luaVM, 2, 0, 0) != 0)
         {
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else

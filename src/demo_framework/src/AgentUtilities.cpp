@@ -143,9 +143,9 @@ void AgentUtilities::CallLuaAgentCleanup(Agent* const agent)
 
     if (lua_pcall(luaVM, 1, 0, 0) != 0)
     {
-        Ogre::LogManager::getSingletonPtr()->logMessage(
-            Ogre::String(lua_tostring(luaVM, -1)), Ogre::LML_CRITICAL);
-        assert(false);
+        const char *msg = lua_tostring(luaVM, -1);
+        Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+        MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
     }
 }
 
@@ -163,9 +163,9 @@ void AgentUtilities::CallLuaAgentHandleKeyboardEvent(
 
         if (lua_pcall(luaVM, 2, 0, 0) != 0)
         {
-            Ogre::LogManager::getSingletonPtr()->logMessage(
-                Ogre::String(lua_tostring(luaVM, -1)), Ogre::LML_CRITICAL);
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -193,9 +193,9 @@ void AgentUtilities::CallLuaAgentHandleMouseEvent(
 
         if (lua_pcall(luaVM, 2, 0, 0) != 0)
         {
-            Ogre::LogManager::getSingletonPtr()->logMessage(
-                Ogre::String(lua_tostring(luaVM, -1)), Ogre::LML_CRITICAL);
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -220,9 +220,9 @@ void AgentUtilities::CallLuaAgentHandleMouseMoveEvent(
 
         if (lua_pcall(luaVM, 2, 0, 0) != 0)
         {
-            Ogre::LogManager::getSingletonPtr()->logMessage(
-                Ogre::String(lua_tostring(luaVM, -1)), Ogre::LML_CRITICAL);
-            assert(false);
+            const char *msg = lua_tostring(luaVM, -1);
+            Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+            MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
         }
     }
     else
@@ -240,9 +240,9 @@ void AgentUtilities::CallLuaAgentInitialize(Agent* const agent)
 
     if (lua_pcall(luaVM, 1, 0, 0) != 0)
     {
-        Ogre::LogManager::getSingletonPtr()->logMessage(
-            Ogre::String(lua_tostring(luaVM, -1)), Ogre::LML_CRITICAL);
-        assert(false);
+        const char *msg = lua_tostring(luaVM, -1);
+        Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+        MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
     }
 }
 
@@ -257,9 +257,9 @@ void AgentUtilities::CallLuaAgentUpdate(
 
     if (lua_pcall(luaVM, 2, 0, 0) != 0)
     {
-        Ogre::LogManager::getSingletonPtr()->logMessage(
-            Ogre::String(lua_tostring(luaVM, -1)), Ogre::LML_CRITICAL);
-        assert(false);
+        const char *msg = lua_tostring(luaVM, -1);
+        Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String(msg), Ogre::LML_CRITICAL);
+        MessageBoxA(NULL, msg, "An exception has occured!",	MB_OK | MB_ICONERROR | MB_TASKMODAL);
     }
 }
 
