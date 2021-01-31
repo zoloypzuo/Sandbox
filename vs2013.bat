@@ -24,11 +24,11 @@ set CURRENT_DIRECTORY=%cd%
 set ARGUMENTS=%*
 
 cd /d %SCRIPT_DIRECTORY%
-rmdir /S/Q build
-rmdir /S/Q lib
+rem rmdir /S/Q build
+rem rmdir /S/Q lib
 
 cd bin
-del /S/Q *.log *.pdb *.exe *.idb
+rem del /S/Q *.log *.pdb *.exe *.idb
 
 cd ..
 
