@@ -176,7 +176,8 @@ void BaseApplication::Draw()
 bool BaseApplication::frameEnded(const Ogre::FrameEvent& event)
 {
     (void)event;
-
+	Ogre::LogManager::getSingletonPtr()->logMessage("[profile] OgreProfileEnd(\"Ogre Main Loop\");");
+    OgreProfileEnd("Ogre Main Loop");
     return true;
 }
 
@@ -198,8 +199,14 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& event)
 
 bool BaseApplication::frameStarted(const Ogre::FrameEvent& event)
 {
-    (void)event;
-
+	Ogre::LogManager::getSingletonPtr()->logMessage("[profile] OgreProfileBegin(\"Ogre Main Loop\");");
+    OgreProfileBegin("Ogre Main Loop");
+	(void)event;
+	{
+		OgreProfile("test");
+		for (int i = 0; i < 10000; i++){
+		}
+	}
     Draw();
 
     return true;
@@ -380,6 +387,8 @@ bool BaseApplication::Setup(void)
 {
 #ifdef _DEBUG
     root_ = new Ogre::Root("", APPLICATION_CONFIG_DEBUG, APPLICATION_LOG_DEBUG);
+	Ogre::LogManager::getSingletonPtr()->logMessage("[profile] Ogre::Profiler::getSingleton().setEnabled(true);");
+	Ogre::Profiler::getSingleton().setEnabled(true);
 #else
     root_ = new Ogre::Root("", APPLICATION_CONFIG_RELEASE, APPLICATION_LOG_RELEASE);
 #endif
