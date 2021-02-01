@@ -387,11 +387,12 @@ bool BaseApplication::Setup(void)
 {
 #ifdef _DEBUG
     root_ = new Ogre::Root("", APPLICATION_CONFIG_DEBUG, APPLICATION_LOG_DEBUG);
-	Ogre::LogManager::getSingletonPtr()->logMessage("[profile] Ogre::Profiler::getSingleton().setEnabled(true);");
-	Ogre::Profiler::getSingleton().setEnabled(true);
 #else
     root_ = new Ogre::Root("", APPLICATION_CONFIG_RELEASE, APPLICATION_LOG_RELEASE);
 #endif
+	Ogre::LogManager::getSingletonPtr()->logMessage("[profile] Ogre::Profiler::getSingleton().setEnabled(true);");
+	Ogre::Profiler::getSingleton().setEnabled(true);
+
     root_->installPlugin(new Ogre::D3D9Plugin());
     root_->installPlugin(new Ogre::ParticleFXPlugin());
 
