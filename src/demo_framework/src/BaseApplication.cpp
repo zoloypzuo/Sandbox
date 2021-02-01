@@ -176,7 +176,6 @@ void BaseApplication::Draw()
 bool BaseApplication::frameEnded(const Ogre::FrameEvent& event)
 {
     (void)event;
-	Ogre::LogManager::getSingletonPtr()->logMessage("[profile] OgreProfileEnd(\"Ogre Main Loop\");");
     OgreProfileEnd("Ogre Main Loop");
     return true;
 }
@@ -199,7 +198,6 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& event)
 
 bool BaseApplication::frameStarted(const Ogre::FrameEvent& event)
 {
-	Ogre::LogManager::getSingletonPtr()->logMessage("[profile] OgreProfileBegin(\"Ogre Main Loop\");");
     OgreProfileBegin("Ogre Main Loop");
 	(void)event;
 	{
