@@ -80,6 +80,8 @@ const luaL_Reg LuaCoreFunctions[] =
     { "SetRotation",                Lua_Script_CoreSetRotation },
     { "SetVisisble",                Lua_Script_CoreSetVisible },
 	{ "Log",                        Lua_Script_Log },
+	{ "ProfilePush",                Lua_Script_ProfilePush },
+	{ "ProfilePop",                 Lua_Script_ProfilePop },
     { NULL, NULL }
 };
 

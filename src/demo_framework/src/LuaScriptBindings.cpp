@@ -4030,3 +4030,15 @@ int Lua_Script_Log(lua_State* luaVM)
 	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
 	return 0;
 }
+
+int Lua_Script_ProfilePush(lua_State* luaVM){
+	const Ogre::String name = LuaScriptUtilities::GetString(luaVM, -1);
+	OgreProfileBegin(name);
+	return 0;
+}
+
+int Lua_Script_ProfilePop(lua_State* luaVM){
+	const Ogre::String name = LuaScriptUtilities::GetString(luaVM, -1);
+	OgreProfileEnd(name);
+	return 0;
+}
