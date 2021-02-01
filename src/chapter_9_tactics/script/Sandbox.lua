@@ -85,6 +85,7 @@ function Sandbox_HandleEvent(sandbox, event)
 end
 
 function Sandbox_Initialize(sandbox)
+	Core.ProfilePush "Sandbox_Initialize"
     -- Setup the demo UI menu.
     GUI_CreateUI(sandbox);
     _ui = _CreateSandboxText(sandbox);
@@ -134,9 +135,11 @@ function Sandbox_Initialize(sandbox)
     
     _drawInfluence = true;
     SoldierTactics_InitializeTactics(sandbox);
+	Core.ProfilePop "Sandbox_Initialize"
 end
 
 function Sandbox_Update(sandbox, deltaTimeInMillis)
+	Core.ProfilePush "Sandbox_Update"
     -- Update the default UI.
     GUI_UpdateUI(sandbox);
 
@@ -145,4 +148,5 @@ function Sandbox_Update(sandbox, deltaTimeInMillis)
     if (_drawInfluence) then
         SoldierTactics_DrawInfluenceMap(sandbox, 1);
     end
+	Core.ProfilePop "Sandbox_Update"
 end

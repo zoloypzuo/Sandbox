@@ -176,7 +176,7 @@ void BaseApplication::Draw()
 bool BaseApplication::frameEnded(const Ogre::FrameEvent& event)
 {
     (void)event;
-    OgreProfileEnd("Ogre Main Loop");
+    //OgreProfileEnd("Ogre Main Loop");
     return true;
 }
 
@@ -198,13 +198,13 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& event)
 
 bool BaseApplication::frameStarted(const Ogre::FrameEvent& event)
 {
-    OgreProfileBegin("Ogre Main Loop");
+    //OgreProfileBegin("Ogre Main Loop");
 	(void)event;
-	{
-		OgreProfile("test profile in cpp");
-		for (int i = 0; i < 10000; i++){
-		}
-	}
+	//{
+	//	OgreProfile("test profile in cpp");
+	//	for (int i = 0; i < 10000; i++){
+	//	}
+	//}
     Draw();
 
     return true;
