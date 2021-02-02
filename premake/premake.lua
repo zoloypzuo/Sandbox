@@ -27,6 +27,9 @@ dofile("SandboxDemos.lua");
 DxLibx64 = "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64"
 DxLibx86 = "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x86/"
 DxInclude = "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/"
+VldInclude = "C:/Program Files (x86)/Visual Leak Detector/include"
+VldLibx86 = "C:/Program Files (x86)/Visual Leak Detector/lib/Win32"
+VldLibx64 = "C:/Program Files (x86)/Visual Leak Detector/lib/Win64"
 
 solution( "Learning Game AI Programming" )
 	location( "../build/" )
@@ -38,6 +41,7 @@ solution( "Learning Game AI Programming" )
 	includedirs( {
 		"../src/%{prj.name}/include/",
 		DxInclude,
+		VldInclude,
 	} )
     warnings( "Extra" )
 	flags( {
@@ -177,21 +181,25 @@ local function CreateSandboxProject( projectName )
 			libdirs( {
 				"\"../build/projects/ogre3d/obj/x32/Debug\"",
 				DxLibx86,
+				VldLibx86,
 			} )
 		configuration( { "windows", "x32", "Release" } )
 			libdirs( {
 				"\"../build/projects/ogre3d/obj/x32/Release\"",
 				DxLibx86,
+				VldLibx86,
 			} )
 		configuration( { "windows", "x64", "Debug" } )
 			libdirs( {
 				"\"../build/projects/ogre3d/obj/x64/Debug\"",
-				DxLibx64
+				DxLibx64,
+				VldLibx64,
 			} )
 		configuration( { "windows", "x64", "Release" } )
 			libdirs( {
 				"\"../build/projects/ogre3d/obj/x64/Release\"",
 				DxLibx64,
+				VldLibx64,
 			} )
 		configuration( "*" )
 		includedirs( {

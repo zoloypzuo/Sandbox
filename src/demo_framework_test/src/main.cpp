@@ -21,6 +21,16 @@
  *  distribution.
  */
 
+#include <cstdio>
+#if defined(DEBUG) || defined(_DEBUG)
+#define _CRTDBG_MAP_ALLOC
+
+#include <cstdlib>  // NOTE include order is important
+#include <crtdbg.h>
+#endif
+
+#include <vld.h>
+
 #include "demo_framework_test/include/DemoTest.h"
 #include "ogre3d/include/OgreException.h"
 
@@ -31,6 +41,22 @@
 
 int main(int argc, char* argv[])
 {
+    // Enable run-time memory check for debug builds.
+#if defined(DEBUG) | defined(_DEBUG)
+    printf("enable memory check");
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    // log to file
+    HANDLE hLogFile = CreateFile("Memory Leaks.txt", GENERIC_WRITE, FILE_SHARE_WRITE,
+                                 NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+    _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_WARN, hLogFile);
+    _CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_ERROR, hLogFile);
+    _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_ASSERT, hLogFile);
+#endif
+
     (void)argc;
     (void)argv;
 
