@@ -38,12 +38,14 @@ local soldierUserData;
 local lastTeam = "team1";
 
 function Agent_Cleanup(agent)
+    Core.Log "Agent_Cleanup"
 end
 
 function Agent_HandleEvent(agent, event)
 end
 
 function Agent_Initialize(agent)
+    Core.Log "Agent_Initialize"
     agent:SetTeam("team" .. (agent:GetId() % 2 + 1));
 
     soldierUserData = {};
@@ -88,6 +90,7 @@ function Agent_Initialize(agent)
 end
 
 function Agent_Update(agent, deltaTimeInMillis)
+    Core.ProfilePush "Agent_Update"
     if (soldierUserData.blackboard:Get("alive")) then
         soldierLogic:Update(deltaTimeInMillis);
         
@@ -106,4 +109,5 @@ function Agent_Update(agent, deltaTimeInMillis)
         end
     end
     ]]
+    Core.ProfilePop "Agent_Update"
 end

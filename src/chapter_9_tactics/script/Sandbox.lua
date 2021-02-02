@@ -63,9 +63,11 @@ local function _CreateSandboxText(sandbox)
 end
 
 function Sandbox_Cleanup(sandbox)
+    Core.Log "Sandbox_Cleanup"
 end
 
 function Sandbox_HandleEvent(sandbox, event)
+    Core.ProfilePush "Sandbox_HandleEvent"
     GUI_HandleEvent(sandbox, event);
     
     if (event.source == "keyboard" and event.pressed) then
@@ -82,10 +84,12 @@ function Sandbox_HandleEvent(sandbox, event)
             Sandbox.SetDrawInfluenceMap(sandbox, _drawInfluence);
         end
     end
+    Core.ProfilePop "Sandbox_HandleEvent"
 end
 
 function Sandbox_Initialize(sandbox)
-	Core.ProfilePush "Sandbox_Initialize"
+	-- Core.ProfilePush "Sandbox_Initialize"  -- profiler is not working when initialized
+	Core.Log "Sandbox_Initialize"
     -- Setup the demo UI menu.
     GUI_CreateUI(sandbox);
     _ui = _CreateSandboxText(sandbox);
@@ -135,7 +139,7 @@ function Sandbox_Initialize(sandbox)
     
     _drawInfluence = true;
     SoldierTactics_InitializeTactics(sandbox);
-	Core.ProfilePop "Sandbox_Initialize"
+	-- Core.ProfilePop "Sandbox_Initialize"
 end
 
 function Sandbox_Update(sandbox, deltaTimeInMillis)
