@@ -176,7 +176,7 @@ void BaseApplication::Draw()
 bool BaseApplication::frameEnded(const Ogre::FrameEvent& event)
 {
     (void)event;
-
+    //OgreProfileEnd("Ogre Main Loop");
     return true;
 }
 
@@ -198,8 +198,13 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& event)
 
 bool BaseApplication::frameStarted(const Ogre::FrameEvent& event)
 {
-    (void)event;
-
+    //OgreProfileBegin("Ogre Main Loop");
+	(void)event;
+	//{
+	//	OgreProfile("test profile in cpp");
+	//	for (int i = 0; i < 10000; i++){
+	//	}
+	//}
     Draw();
 
     return true;
@@ -383,6 +388,9 @@ bool BaseApplication::Setup(void)
 #else
     root_ = new Ogre::Root("", APPLICATION_CONFIG_RELEASE, APPLICATION_LOG_RELEASE);
 #endif
+	Ogre::LogManager::getSingletonPtr()->logMessage("[profile] Ogre::Profiler::getSingleton().setEnabled(true);");
+	Ogre::Profiler::getSingleton().setEnabled(true);
+
     root_->installPlugin(new Ogre::D3D9Plugin());
     root_->installPlugin(new Ogre::ParticleFXPlugin());
 

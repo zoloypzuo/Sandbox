@@ -37,7 +37,7 @@ THE SOFTWARE.
 /** If set to 1, profiling code will be included in the application. When you
 	are deploying your application you will probably want to set this to 0 */
 #ifndef OGRE_PROFILING
-#define OGRE_PROFILING 0
+#define OGRE_PROFILING 1
 #endif
 
 /** There are three modes for handling asserts in OGRE:

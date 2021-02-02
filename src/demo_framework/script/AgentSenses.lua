@@ -263,8 +263,7 @@ function AgentSenses_UpdateSenses(sandbox, userData, deltaTimeInMillis)
         userData.blackboard, "bulletShots", deltaTimeInMillis);
     
     local updateInterval = 500;
-    updateInterval = 1;
-    
+
     lastUpdate = lastUpdate + deltaTimeInMillis;
     
     if (lastUpdate > updateInterval) then

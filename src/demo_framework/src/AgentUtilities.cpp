@@ -94,7 +94,6 @@ const luaL_Reg AgentFunctions[] =
 const luaL_Reg AgentMetaFunctions[] =
 {
     { "__eq",                       Lua_Script_AgentEquals },
-    { "__index",                    Lua_Script_AgentIndex },
     { "__towatch",                  Lua_Script_AgentToWatch },
     { NULL, NULL }
 };
@@ -108,6 +107,14 @@ void AgentUtilities::ApplyForce(Agent* const agent, const Ogre::Vector3 force)
 
 void AgentUtilities::BindVMFunctions(lua_State* const luaVM)
 {
+	// register method
+	luaL_newmetatable(luaVM, LUA_AGENT_METATABLE);
+	//  metatable.__index = metatable
+	lua_pushvalue(luaVM, -1);  // dubplicate mt
+	lua_setfield(luaVM, -2, "__index");
+	luaL_register(luaVM, nullptr, AgentFunctions);
+
+	// register AgentMetaFunctions
     luaL_newmetatable(luaVM, LUA_AGENT_METATABLE);
     luaL_register(luaVM, NULL, AgentMetaFunctions);
 
