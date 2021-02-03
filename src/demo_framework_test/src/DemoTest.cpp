@@ -21,6 +21,7 @@
  *  distribution.
  */
 
+#include <vld.h>
 #include "demo_framework_test/include/DemoTest.h"
 #include "ogre3d/include/OgreLogManager.h"
 
@@ -28,12 +29,6 @@ DemoTest::DemoTest()
     : SandboxApplication(
         "Learning Game AI Programming with Lua - Demo Framework Test")
 {
-    Ogre::LogManager* const logManager = new Ogre::LogManager();
-
-    logManager->createLog("Ogre.log", true, true, true);
-
-    // Disable normal Ogre logging.
-    logManager->setLogDetail(Ogre::LL_LOW);
 }
 
 DemoTest::~DemoTest()
