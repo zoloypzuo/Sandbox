@@ -70,6 +70,8 @@ public:
 
     virtual void Update();
 
+	virtual void ShowDebugText();
+
 private:
     long long lastUpdateTimeInMicro_;
     long long lastUpdateCallTime_;
@@ -82,9 +84,6 @@ private:
     int lastSandboxId_;
 
 	std::shared_ptr<Gorilla::Silverback> mSilverback;
-	Gorilla::Screen *mScreen;
-	Gorilla::Layer *mLayer;
-	Gorilla::MarkupText *text;
 
     SandboxApplication(const SandboxApplication&);
     SandboxApplication& operator=(const SandboxApplication&);

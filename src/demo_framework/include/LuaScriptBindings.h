@@ -717,4 +717,6 @@ int Lua_Script_ProfilePush(lua_State* luaVM);
 
 int Lua_Script_ProfilePop(lua_State* luaVM);
 
+int Lua_Script_ShowDebugText(lua_State* luaVM);
+
 #endif  // DEMO_FRAMEWORK_LUA_SCRIPT_BINDINGS_H

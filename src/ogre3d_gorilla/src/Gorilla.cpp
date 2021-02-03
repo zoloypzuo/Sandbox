@@ -145,6 +145,9 @@ namespace Gorilla
    {
     Ogre::uint index = Ogre::StringConverter::parseUnsignedInt(secName.substr(5));
     GlyphData* glyphData = OGRE_NEW GlyphData();
+	char msg[80];  
+	std::sprintf(msg, "[mem] TextureAtlas::_load %d", index);
+	Ogre::LogManager::getSingleton().logMessage(msg);
     mGlyphData[index] = glyphData;
 
     _loadGlyphs(settings, glyphData);
@@ -657,6 +660,7 @@ namespace Gorilla
  void Silverback::loadAtlas(const Ogre::String &name, const Ogre::String &group)
  {
   TextureAtlas* atlas = OGRE_NEW TextureAtlas(name + ".gorilla", group);
+  Ogre::LogManager::getSingleton().logMessage("[mem] loadAtlas " + name);
   mAtlases[name] = atlas;
  }
 

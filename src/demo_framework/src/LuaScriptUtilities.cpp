@@ -82,6 +82,7 @@ const luaL_Reg LuaCoreFunctions[] =
 	{ "Log",                        Lua_Script_Log },
 	{ "ProfilePush",                Lua_Script_ProfilePush },
 	{ "ProfilePop",                 Lua_Script_ProfilePop },
+	{ "ShowDebugText",              Lua_Script_ShowDebugText },
     { NULL, NULL }
 };
 

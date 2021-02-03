@@ -4042,3 +4042,7 @@ int Lua_Script_ProfilePop(lua_State* luaVM){
 	OgreProfileEnd(name);
 	return 0;
 }
+
+int Lua_Script_ShowDebugText(lua_State* luaVM) {
+	return 0;
+}
