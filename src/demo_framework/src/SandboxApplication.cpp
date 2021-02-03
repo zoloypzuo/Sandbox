@@ -171,10 +171,10 @@ void SandboxApplication::Initialize()
     AddResourceLocation("../../../src/demo_framework/script");
 
     mSilverback = std::make_shared<Gorilla::Silverback>();
-    mSilverback->loadAtlas("fonts/dejavu/dejavu");
-	mScreen = mSilverback->createScreen(
-		GetCamera()->getViewport(), "fonts/dejavu/dejavu");
-    mLayer = mScreen->createLayer(0);
+ //   mSilverback->loadAtlas("fonts/dejavu/dejavu");
+	//mScreen = mSilverback->createScreen(
+	//	GetCamera()->getViewport(), "fonts/dejavu/dejavu");
+ //   mLayer = mScreen->createLayer(0);
 
 #ifdef NDEBUG
 #define BUILD_TYPE "RELEASE"
@@ -182,17 +182,17 @@ void SandboxApplication::Initialize()
 #define BUILD_TYPE "DEBUG"
 #endif
 
-    text = mLayer->createMarkupText(
-        91,
-        mScreen->getWidth(),
-        mScreen->getHeight(),
-        "Learning Game AI Programming with Lua v1.0 " BUILD_TYPE " " __TIMESTAMP__);
+    //text = mLayer->createMarkupText(
+    //    91,
+    //    mScreen->getWidth(),
+    //    mScreen->getHeight(),
+    //    "Learning Game AI Programming with Lua v1.0 " BUILD_TYPE " " __TIMESTAMP__);
 
-    text->left(mScreen->getWidth() - text->maxTextWidth() - 4);
-    text->top(mScreen->getHeight() -
-        mScreen->getAtlas()->getGlyphData(9)->mLineHeight - 4);
+    //text->left(mScreen->getWidth() - text->maxTextWidth() - 4);
+    //text->top(mScreen->getHeight() -
+    //    mScreen->getAtlas()->getGlyphData(9)->mLineHeight - 4);
 
-    mLayer->setVisible(true);
+    //mLayer->setVisible(true);
     // mLayer->setVisible(false);
 }
 

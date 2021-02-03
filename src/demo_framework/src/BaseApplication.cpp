@@ -416,7 +416,7 @@ bool BaseApplication::Setup(void)
     CreateResourceListener();
 
     // Load resources
-    LoadResources();
+    // LoadResources();
 
     Initialize();
 
