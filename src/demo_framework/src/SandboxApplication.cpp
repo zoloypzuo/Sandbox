@@ -31,9 +31,7 @@
 
 SandboxApplication::SandboxApplication(const Ogre::String& applicationTitle)
     : BaseApplication(applicationTitle),
-    lastSandboxId_(-1),
-    sandbox_(NULL),
-    luaFileManager_(NULL)
+    lastSandboxId_(-1)
 {
     timer_.reset();
 
@@ -43,12 +41,6 @@ SandboxApplication::SandboxApplication(const Ogre::String& applicationTitle)
 
 SandboxApplication::~SandboxApplication()
 {
-    delete luaFileManager_;
-
-    if (sandbox_)
-    {
-        delete sandbox_;
-    }
 }
 
 void SandboxApplication::AddResourceLocation(const Ogre::String& location)
@@ -75,15 +67,12 @@ void SandboxApplication::CreateSandbox(const Ogre::String& sandboxLuaScript)
         sandboxLuaScript,
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
+	// TODO(zolo)
     Ogre::SceneNode* const sandboxNode =
         GetSceneManager()->getRootSceneNode()->createChildSceneNode();
 
-    if (sandbox_)
-    {
-        delete sandbox_;
-    }
-
-    sandbox_ = new Sandbox(GenerateSandboxId(), sandboxNode, GetCamera());
+	// TODO(zolo) if sandbox exist, delete it and recreate
+    sandbox_ = std::make_unique<Sandbox>(GenerateSandboxId(), sandboxNode, GetCamera());
 
     sandbox_->LoadScript(
         script->GetData(), script->GetDataLength(), script->getName().c_str());
@@ -112,7 +101,7 @@ int SandboxApplication::GenerateSandboxId()
 
 Sandbox* SandboxApplication::GetSandbox()
 {
-    return sandbox_;
+    return sandbox_.get();
 }
 
 void SandboxApplication::HandleKeyPress(
@@ -161,7 +150,7 @@ void SandboxApplication::HandleMouseRelease(
 
 void SandboxApplication::Initialize()
 {
-    luaFileManager_ = new LuaFileManager();
+    luaFileManager_ = std::make_unique<LuaFileManager>();
 
     const Ogre::ColourValue ambient(0.0f, 0.0f, 0.0f);
 
@@ -181,11 +170,11 @@ void SandboxApplication::Initialize()
 
     AddResourceLocation("../../../src/demo_framework/script");
 
-    Gorilla::Silverback* mSilverback = new Gorilla::Silverback();
+    mSilverback = std::make_shared<Gorilla::Silverback>();
     mSilverback->loadAtlas("fonts/dejavu/dejavu");
-    Gorilla::Screen* mScreen = mSilverback->createScreen(
-        GetCamera()->getViewport(), "fonts/dejavu/dejavu");
-    Gorilla::Layer* mLayer = mScreen->createLayer(0);
+	mScreen = mSilverback->createScreen(
+		GetCamera()->getViewport(), "fonts/dejavu/dejavu");
+    mLayer = mScreen->createLayer(0);
 
 #ifdef NDEBUG
 #define BUILD_TYPE "RELEASE"
@@ -193,7 +182,7 @@ void SandboxApplication::Initialize()
 #define BUILD_TYPE "DEBUG"
 #endif
 
-    Gorilla::MarkupText* const text = mLayer->createMarkupText(
+    text = mLayer->createMarkupText(
         91,
         mScreen->getWidth(),
         mScreen->getHeight(),

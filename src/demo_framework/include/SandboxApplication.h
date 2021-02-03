@@ -28,6 +28,9 @@
 #include "ogre3d/include/OgreString.h"
 #include "ogre3d/include/OgreTimer.h"
 
+#include <memory>
+#include "ogre3d_gorilla/include/Gorilla.h"
+
 class LuaFileManager;
 class Sandbox;
 
@@ -71,12 +74,17 @@ private:
     long long lastUpdateTimeInMicro_;
     long long lastUpdateCallTime_;
 
-    LuaFileManager* luaFileManager_;
+    std::unique_ptr<LuaFileManager> luaFileManager_;
 
-    Sandbox* sandbox_;
+    std::unique_ptr<Sandbox> sandbox_;
     Ogre::Timer timer_;
 
     int lastSandboxId_;
+
+	std::shared_ptr<Gorilla::Silverback> mSilverback;
+	Gorilla::Screen *mScreen;
+	Gorilla::Layer *mLayer;
+	Gorilla::MarkupText *text;
 
     SandboxApplication(const SandboxApplication&);
     SandboxApplication& operator=(const SandboxApplication&);
