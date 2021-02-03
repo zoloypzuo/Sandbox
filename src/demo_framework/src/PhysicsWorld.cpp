@@ -78,6 +78,12 @@ void PhysicsWorld::Cleanup()
         delete broadphase_;
         broadphase_ = NULL;
     }
+
+	if (debugDraw_)
+	{
+		delete debugDraw_;
+		debugDraw_ = nullptr;
+	}
 }
 
 void PhysicsWorld::DrawDebugWorld()
