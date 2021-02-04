@@ -393,20 +393,20 @@ Sandbox::Sandbox(
 
     luaVM_ = LuaScriptUtilities::CreateVM();
 
-    //// Add general Core library functions.
-    //LuaScriptUtilities::BindVMFunctions(luaVM_);
+    // Add general Core library functions.
+    LuaScriptUtilities::BindVMFunctions(luaVM_);
 
-    //// Add Sandbox specific library functions.
-    //SandboxUtilities::BindVMFunctions(luaVM_);
+    // Add Sandbox specific library functions.
+    SandboxUtilities::BindVMFunctions(luaVM_);
 
-    //// Add Agent specific library functions.
-    //AgentUtilities::BindVMFunctions(luaVM_);
+    // Add Agent specific library functions.
+    AgentUtilities::BindVMFunctions(luaVM_);
 
-    //// Add Animation specific functions.
-    //AnimationUtilities::BindVMFunctions(luaVM_);
+    // Add Animation specific functions.
+    AnimationUtilities::BindVMFunctions(luaVM_);
 
-    //// Add ui specific functions.
-    //UserInterfaceUtilities::BindVMFunctions(luaVM_);
+    // Add ui specific functions.
+    UserInterfaceUtilities::BindVMFunctions(luaVM_);
 }
 
 Sandbox::~Sandbox()

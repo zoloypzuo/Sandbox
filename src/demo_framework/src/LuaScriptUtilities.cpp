@@ -372,7 +372,7 @@ Ogre::SceneNode* LuaScriptUtilities::CreatePlane(
 lua_State* LuaScriptUtilities::CreateVM()
 {
     lua_State* const luaVM = luaL_newstate();
-    //luaL_openlibs(luaVM);
+    luaL_openlibs(luaVM);
 
     return luaVM;
 }
