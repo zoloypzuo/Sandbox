@@ -357,8 +357,8 @@ function LuaTest_RunTests()
     LuaTest_PrintFooter(totalTime * 1000);
     LuaTest_PrintSummary(passedTests, failedTests);
     
-    if (#failedTests > 0) then
-        os.exit(-1);
-    end
-    os.exit(0);
+    --if (#failedTests > 0) then
+    --    os.exit(-1);
+    --end
+    --os.exit(0);
 end
