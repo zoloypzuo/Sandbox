@@ -32,10 +32,14 @@
 - [x] 修复构建错误
 - [x] 修复lua泄漏异常的问题
 - [x] 修复性能卡顿问题
-- [ ] 修复内存泄露问题
+- [x] 修复内存泄露问题
 
 # 知乎文章
 
 [Lua游戏AI开发指南引擎魔改计划](https://zhuanlan.zhihu.com/p/348000628)
 
-[【LuaAI引擎魔改】-01-Lua异常泄漏 - 知乎](https://zhuanlan.zhihu.com/p/348352200)
+[【LuaAI引擎魔改】-01-Lua异常泄漏](https://zhuanlan.zhihu.com/p/348352200)
+
+[【LuaAI引擎魔改】-02-卡顿问题](https://zhuanlan.zhihu.com/p/348799397)
+
+[【LuaAI引擎魔改】-03-内存泄露](https://zhuanlan.zhihu.com/p/349050336)
