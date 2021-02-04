@@ -55,31 +55,41 @@ int main(int argc, char* argv[])
     _CrtSetReportFile(_CRT_ERROR, hLogFile);
     _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
     _CrtSetReportFile(_CRT_ASSERT, hLogFile);
+
+	_CrtMemState s1, s2, s3;
+	_CrtMemCheckpoint(&s1);
 #endif
+	{
+		(void)argc;
+		(void)argv;
 
-    (void)argc;
-    (void)argv;
+		// Create application object
+		DemoTest app;
 
-    // Create application object
-    DemoTest app;
-
-    try
-    {
-        app.Run();
-    }
-    catch( Ogre::Exception& error )
-    {
+		try
+		{
+			app.Run();
+		}
+		catch (Ogre::Exception& error)
+		{
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-        MessageBox(
-            NULL,
-            error.getFullDescription().c_str(),
-            "An exception has occured!",
-            MB_OK | MB_ICONERROR | MB_TASKMODAL);
+			MessageBox(
+				NULL,
+				error.getFullDescription().c_str(),
+				"An exception has occured!",
+				MB_OK | MB_ICONERROR | MB_TASKMODAL);
 #else
-        std::cerr << "An exception has occured: " <<
-            error.getFullDescription().c_str() << std::endl;
+			std::cerr << "An exception has occured: " <<
+				error.getFullDescription().c_str() << std::endl;
 #endif
-    }
+		}
+	}
+#if defined(DEBUG) | defined(_DEBUG)
+	_CrtMemCheckpoint(&s2);
+
+	if (_CrtMemDifference(&s3, &s1, &s2))
+		_CrtMemDumpStatistics(&s3);
+#endif
 
     return 0;
 }
