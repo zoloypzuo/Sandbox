@@ -399,10 +399,9 @@ bool BaseApplication::Setup(void)
 
     SetupResources();
 
-    bool carryOn = Configure();
-    if (!carryOn)
+    if (!Configure())
     {
-        return false;
+        return false;  // do not carry on
     }
 
     ChooseSceneManager();
@@ -416,7 +415,7 @@ bool BaseApplication::Setup(void)
     CreateResourceListener();
 
     // Load resources
-     LoadResources();
+    LoadResources();
 
     Initialize();
 
