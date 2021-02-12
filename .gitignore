@@ -344,7 +344,7 @@ lib/**
 media/**
 tools/**
 cmake-build-debug/**
-
+cmake-build**/**
 
 
 
