@@ -34,8 +34,8 @@ add_subdirectory(zzip)
 # ---------------------------------------------------
 # framework
 # ---------------------------------------------------
-add_subdirectory(demo_framework)
 include_directories(demo_framework/include)
+add_subdirectory(demo_framework)
 link_directories(demo_framework)
 # ---------------------------------------------------
 # games
