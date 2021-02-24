@@ -54,13 +54,13 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     Archive* ArchiveManager::load( const String& filename, const String& archiveType, bool readOnly)
     {
-        ArchiveMap::iterator i = mArchives.find(filename);
-        Archive* pArch = 0;
+        auto i = mArchives.find(filename);
+        Archive* pArch = nullptr;
 
         if (i == mArchives.end())
         {
             // Search factories
-            ArchiveFactoryMap::iterator it = mArchFactories.find(archiveType);
+            auto it = mArchFactories.find(archiveType);
             if (it == mArchFactories.end())
                 // Factory not found
                 OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND, "Cannot find an archive factory "

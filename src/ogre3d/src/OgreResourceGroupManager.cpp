@@ -128,7 +128,7 @@ namespace Ogre {
 		}
 	}
 	//-----------------------------------------------------------------------
-	void ResourceGroupManager::initialiseAllResourceGroups(void)
+	void ResourceGroupManager::initialiseAllResourceGroups()
 	{
             OGRE_LOCK_AUTO_MUTEX;
 
@@ -151,7 +151,7 @@ namespace Ogre {
 				grp->groupStatus = ResourceGroup::INITIALISED;
 				LogManager::getSingleton().logMessage("All done");
 				// Reset current group
-				mCurrentGroup = 0;
+				mCurrentGroup = nullptr;
 			}
 		}
 	}
@@ -557,14 +557,14 @@ namespace Ogre {
         // Get archive
         Archive* pArch = ArchiveManager::getSingleton().load( name, locType, readOnly );
         // Add to location list
-		ResourceLocation* loc = OGRE_NEW_T(ResourceLocation, MEMCATEGORY_RESOURCE);
+		auto* loc = OGRE_NEW_T(ResourceLocation, MEMCATEGORY_RESOURCE);
 		loc->archive = pArch;
 		loc->recursive = recursive;
         grp->locationList.push_back(loc);
         // Index resources
         StringVectorPtr vec = pArch->find("*", recursive);
-        for( StringVector::iterator it = vec->begin(); it != vec->end(); ++it )
-			grp->addToIndex(*it, pArch);
+        for(auto & it : *vec)
+			grp->addToIndex(it, pArch);
 		
 		StringUtil::StrStreamType msg;
 		msg << "Added resource location '" << name << "' of type '" << locType
@@ -690,7 +690,7 @@ namespace Ogre {
 
 		OGRE_LOCK_MUTEX(grp->OGRE_AUTO_MUTEX_NAME); // lock group mutex
 
-		Archive* pArch = 0;
+		Archive* pArch = nullptr;
 		ResourceLocationIndex::iterator rit = grp->resourceIndexCaseSensitive.find(resourceName);
 		if (rit != grp->resourceIndexCaseSensitive.end())
 		{
@@ -1040,9 +1040,9 @@ namespace Ogre {
 
 			// Get all the patterns and search them
 			const StringVector& patterns = su->getScriptPatterns();
-			for (StringVector::const_iterator p = patterns.begin(); p != patterns.end(); ++p)
+			for (const auto & pattern : patterns)
 			{
-				FileInfoListPtr fileList = findResourceFileInfo(grp->name, *p);
+				FileInfoListPtr fileList = findResourceFileInfo(grp->name, pattern);
 				scriptCount += fileList->size();
 				fileListList->push_back(fileList);
 			}
@@ -1054,34 +1054,33 @@ namespace Ogre {
 
 		// Iterate over scripts and parse
 		// Note we respect original ordering
-        for (ScriptLoaderFileList::iterator slfli = scriptLoaderFileList.begin();
-            slfli != scriptLoaderFileList.end(); ++slfli)
+        for (auto & slfli : scriptLoaderFileList)
         {
-			ScriptLoader* su = slfli->first;
+			ScriptLoader* su = slfli.first;
             // Iterate over each list
-            for (FileListList::iterator flli = slfli->second->begin(); flli != slfli->second->end(); ++flli)
+            for (auto & flli : *slfli.second)
             {
 			    // Iterate over each item in the list
-			    for (FileInfoList::iterator fii = (*flli)->begin(); fii != (*flli)->end(); ++fii)
+			    for (auto & fii : *flli)
 			    {
 					bool skipScript = false;
-                    fireScriptStarted(fii->filename, skipScript);
+                    fireScriptStarted(fii.filename, skipScript);
 					if(skipScript)
 					{
 						LogManager::getSingleton().logMessage(
-							"Skipping script " + fii->filename);
+							"Skipping script " + fii.filename);
 					}
 					else
 					{
 						LogManager::getSingleton().logMessage(
-							"Parsing script " + fii->filename);
-                        DataStreamPtr stream = fii->archive->open(fii->filename);
+							"Parsing script " + fii.filename);
+                        DataStreamPtr stream = fii.archive->open(fii.filename);
                         if (!stream.isNull())
                         {
 							if (mLoadingListener)
-								mLoadingListener->resourceStreamOpened(fii->filename, grp->name, 0, stream);
+								mLoadingListener->resourceStreamOpened(fii.filename, grp->name, 0, stream);
 
-							if(fii->archive->getType() == "FileSystem" && stream->size() <= 1024 * 1024)
+							if(fii.archive->getType() == "FileSystem" && stream->size() <= 1024 * 1024)
 							{
 								DataStreamPtr cachedCopy;
 								cachedCopy.bind(OGRE_NEW MemoryDataStream(stream->getName(), stream));
@@ -1091,7 +1090,7 @@ namespace Ogre {
                             	su->parseScript(stream, grp->name);
                         }
                     }
-					fireScriptEnded(fii->filename, skipScript);
+					fireScriptEnded(fii.filename, skipScript);
 			    }
             }
 		}
@@ -1104,7 +1103,7 @@ namespace Ogre {
 	void ResourceGroupManager::createDeclaredResources(ResourceGroup* grp)
 	{
 
-		for (ResourceDeclarationList::iterator i = grp->resourceDeclarations.begin();
+		for (auto i = grp->resourceDeclarations.begin();
 			i != grp->resourceDeclarations.end(); ++i)
 		{
 			ResourceDeclaration& dcl = *i;
@@ -1114,7 +1113,7 @@ namespace Ogre {
 			ResourcePtr res = mgr->createResource(dcl.resourceName, grp->name,
                 dcl.loader != 0, dcl.loader, &dcl.parameters);
 			// Add resource to load list
-			ResourceGroup::LoadResourceOrderMap::iterator li = 
+			auto li =
 				grp->loadResourceOrderMap.find(mgr->getLoadingOrder());
 			LoadUnloadResourceList* loadList;
 			if (li == grp->loadResourceOrderMap.end())
