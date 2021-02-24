@@ -20,6 +20,11 @@ add_subdirectory(libraw)
 add_subdirectory(libtiff4)
 add_subdirectory(libvorbis)
 add_subdirectory(lua)
+include_directories(
+        ogre3d/include
+        ogre3d_direct3d9/include
+        ogre3d_particlefx/include
+)
 add_subdirectory(ogre3d)
 add_subdirectory(ogre3d_direct3d9)
 add_subdirectory(ogre3d_gorilla)
