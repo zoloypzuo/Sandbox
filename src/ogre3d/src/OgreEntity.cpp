@@ -2529,7 +2529,7 @@ namespace Ogre {
 	{
 		// must have mesh parameter
 		MeshPtr pMesh;
-		if (params != 0)
+		if (params != nullptr)
 		{
 			String groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME;
 
