@@ -302,7 +302,7 @@ namespace Ogre {
 				oi != grp->loadResourceOrderMap.end(); ++oi)
 			{
 				size_t n = 0;
-				LoadUnloadResourceList::iterator l = oi->second->begin();
+				auto l = oi->second->begin();
 				while (l != oi->second->end())
 				{
 					ResourcePtr res = *l;
@@ -348,7 +348,7 @@ namespace Ogre {
 		grp->groupStatus = ResourceGroup::LOADED;
 
 		// reset current group
-		mCurrentGroup = 0;
+		mCurrentGroup = nullptr;
 		
 		LogManager::getSingleton().logMessage("Finished loading resource group " + name);
     }
@@ -691,7 +691,7 @@ namespace Ogre {
 		OGRE_LOCK_MUTEX(grp->OGRE_AUTO_MUTEX_NAME); // lock group mutex
 
 		Archive* pArch = nullptr;
-		ResourceLocationIndex::iterator rit = grp->resourceIndexCaseSensitive.find(resourceName);
+		auto rit = grp->resourceIndexCaseSensitive.find(resourceName);
 		if (rit != grp->resourceIndexCaseSensitive.end())
 		{
 			// Found in the index

@@ -69,7 +69,7 @@ namespace Ogre {
 		mReadOnly = readOnly;
     }
     //-----------------------------------------------------------------------
-    bool FileSystemArchive::isCaseSensitive(void) const
+    bool FileSystemArchive::isCaseSensitive() const
     {
         #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WINRT
             return false;
@@ -105,7 +105,7 @@ namespace Ogre {
         bool dirs, StringVector* simpleList, FileInfoList* detailList) const
     {
         intptr_t lHandle, res;
-        struct _finddata_t tagData;
+        struct _finddata_t tagData{};
 
         // pattern can contain a directory name, separate it from mask
         size_t pos1 = pattern.rfind ('/');
@@ -209,7 +209,7 @@ namespace Ogre {
 
 		// Use filesystem to determine size 
 		// (quicker than streaming to the end and back)
-		struct stat tagStat;
+		struct stat tagStat{};
 		int ret = stat(full_path.c_str(), &tagStat);
 		assert(ret == 0 && "Problem getting file size" );
         (void)ret;  // Silence warning
@@ -217,9 +217,9 @@ namespace Ogre {
 		// Always open in binary mode
 		// Also, always include reading
 		std::ios::openmode mode = std::ios::in | std::ios::binary;
-		std::istream* baseStream = 0;
-		std::ifstream* roStream = 0;
-		std::fstream* rwStream = 0;
+		std::istream* baseStream = nullptr;
+		std::ifstream* roStream = nullptr;
+		std::fstream* rwStream = nullptr;
 
         if (!readOnly && isReadOnly())
         {
@@ -284,7 +284,7 @@ namespace Ogre {
 		// Always open in binary mode
 		// Also, always include reading
 		std::ios::openmode mode = std::ios::out | std::ios::binary;
-		std::fstream* rwStream = OGRE_NEW_T(std::fstream, MEMCATEGORY_GENERAL)();
+		auto* rwStream = OGRE_NEW_T(std::fstream, MEMCATEGORY_GENERAL)();
 		rwStream->open(full_path.c_str(), mode);
 
 		// Should check ensure open succeeded, in case fail for some reason.
@@ -297,7 +297,7 @@ namespace Ogre {
 		}
 
 		/// Construct return stream, tell it to delete on destroy
-		FileStreamDataStream* stream = OGRE_NEW FileStreamDataStream(filename,
+		auto* stream = OGRE_NEW FileStreamDataStream(filename,
 				rwStream, 0, true);
 
 		return DataStreamPtr(stream);
@@ -364,7 +364,7 @@ namespace Ogre {
 	{
         String full_path = concatenate_path(mName, filename);
 
-        struct stat tagStat;
+        struct stat tagStat{};
         bool ret = (stat(full_path.c_str(), &tagStat) == 0);
 
 		// stat will return true if the filename is absolute, but we need to check
@@ -390,7 +390,7 @@ namespace Ogre {
 	{
 		String full_path = concatenate_path(mName, filename);
 
-		struct stat tagStat;
+		struct stat tagStat{};
 		bool ret = (stat(full_path.c_str(), &tagStat) == 0);
 
 		if (ret)
@@ -404,7 +404,7 @@ namespace Ogre {
 
 	}
     //-----------------------------------------------------------------------
-    const String& FileSystemArchiveFactory::getType(void) const
+    const String& FileSystemArchiveFactory::getType() const
     {
         static String name = "FileSystem";
         return name;
