@@ -18,9 +18,6 @@
 
 下载链接：
 
-[zoloypzuo/LearningGameAIProgrammingResource](https://github.com/zoloypzuo/LearningGameAIProgrammingResource)
-
-或者gitee
 [Zolo/LearningGameAIProgrammingResource](https://gitee.com/zolozy/LearningGameAIProgrammingResource)
 
 下载好后把资源仓库拷贝到代码仓库，合并成可以运行的游戏
